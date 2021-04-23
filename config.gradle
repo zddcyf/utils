@@ -1,5 +1,5 @@
-def versionName = "v1.0.0"
-def versionCode = 1
+def versionName = "v1.0.1"
+def versionCode = 2
 
 // dependencies
 def appcompat = "1.1.0"
@@ -17,11 +17,11 @@ def pictureLibrary = "v2.5.2"
 ext {
     // 全局配置信息
     config = [
-            "compileSdkVersion": 28,
-            "buildToolsVersion": "28.0.3",
+            "compileSdkVersion": 30,
+            "buildToolsVersion": "30.0.2",
             "applicationId"    : "com.mul.utils",
             "minSdkVersion"    : 22,
-            "targetSdkVersion" : 28,
+            "targetSdkVersion" : 30,
             "versionCode"      : versionCode,
             "versionName"      : versionName,
     ]
