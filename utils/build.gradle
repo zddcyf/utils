@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'//this
-group='com.github.zddcyf:utils'//this
+group='com.github.zddcyf'//this
 
 android {
     compileSdkVersion rootProject.ext.config.compileSdkVersion
