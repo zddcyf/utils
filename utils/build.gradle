@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'//this
+group='com.github.zddcyf:utils'//this
+
+android {
+    compileSdkVersion rootProject.ext.config.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.config.minSdkVersion
+        targetSdkVersion rootProject.ext.config.targetSdkVersion
+        versionCode rootProject.ext.config.versionCode
+        versionName rootProject.ext.config.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.compileOptions.sourceCompatibility
+        targetCompatibility rootProject.ext.compileOptions.targetCompatibility
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation rootProject.ext.dependencies["appcompat"]
+
+    // glide
+    api rootProject.ext.UtilDependencies["glideGlide"]
+    implementation group: 'commons-codec', name: 'commons-codec', version: '20041127.091804'
+    annotationProcessor rootProject.ext.UtilDependencies["glideCompiler"]
+    
+    // 图片选择器
+    api rootProject.ext.UtilDependencies["pictureLibrary"]
+
+    // 二维码
+    api rootProject.ext.UtilDependencies["zXCore"]
+}
