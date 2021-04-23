@@ -1,4 +1,4 @@
-def versionName = "1.0.0"
+def versionName = "v1.0.0"
 def versionCode = 1
 
 // dependencies
