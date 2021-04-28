@@ -1,8 +1,8 @@
 package com.mul.utils.deivice;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon.deivice
+ * @ProjectName: utils
+ * @Package: com.mul.utils.deivice
  * @ClassName: CommandResult
  * @Author: zdd
  * @CreateDate: 2021/4/15 17:21:11

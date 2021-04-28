@@ -1,5 +1,5 @@
-def versionName = "v1.0.4"
-def versionCode = 5
+def versionName = "v1.0.5"
+def versionCode = 6
 
 // dependencies
 def appcompat = "1.1.0"
@@ -13,6 +13,7 @@ def zXCore = "3.3.2"
 def glideGlide = "4.11.0"
 def glideCompiler = "4.11.0"
 def pictureLibrary = "v2.5.2"
+def room = "1.1.1"
 
 ext {
     // 全局配置信息
@@ -49,6 +50,9 @@ ext {
             // 图片选择器
             "pictureLibrary": "com.github.LuckSiege.PictureSelector:picture_library:${pictureLibrary}",
             // zxing 二维码
-            "zXCore"        : "com.google.zxing:core:${zXCore}"
+            "zXCore"        : "com.google.zxing:core:${zXCore}",
+            // room数据库
+            "room"              : "android.arch.persistence.room:runtime:${room}",
+            "roomCompiler"      : "android.arch.persistence.room:compiler:${room}",
     ]
 }

@@ -7,8 +7,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @ProjectName: jolly
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: GenericUtils
  * @Author: zdd
  * @CreateDate: 2020/8/14 16:25

@@ -10,6 +10,12 @@ android {
         versionCode rootProject.ext.config.versionCode
         versionName rootProject.ext.config.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -39,4 +45,7 @@ dependencies {
 
     // 二维码
     api rootProject.ext.UtilDependencies["zXCore"]
+
+    api rootProject.ext.UtilDependencies["room"]
+    annotationProcessor rootProject.ext.UtilDependencies["roomCompiler"]
 }

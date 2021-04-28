@@ -1,8 +1,8 @@
 package com.mul.utils.log;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils.log
+ * @ProjectName: utils
+ * @Package: com.mul.utils.log
  * @ClassName: LogTagConfig
  * @Author: zdd
  * @CreateDate: 2019/12/25 11:35

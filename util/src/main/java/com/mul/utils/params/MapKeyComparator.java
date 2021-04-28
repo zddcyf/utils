@@ -3,8 +3,8 @@ package com.mul.utils.params;
 import java.util.Comparator;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils.params
  * @ClassName: MapKeyComparator
  * @Author: zdd
  * @CreateDate: 2020/9/29 14:13:46

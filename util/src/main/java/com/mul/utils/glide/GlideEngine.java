@@ -25,8 +25,8 @@ import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import com.mul.utils.R;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils.glide
+ * @ProjectName: utils
+ * @Package: com.mul.utils.glide
  * @ClassName: GlideEngine
  * @Author: zdd
  * @CreateDate: 2019/12/3 8:42

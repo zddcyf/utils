@@ -5,8 +5,8 @@ import com.mul.utils.log.LogUtil;
 import java.math.BigDecimal;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: NumberUtils
  * @Author: zdd
  * @CreateDate: 2020/5/26 15:03

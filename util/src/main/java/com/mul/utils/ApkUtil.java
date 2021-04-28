@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: AppInstall
  * @Author: zdd
  * @CreateDate: 2021/4/15 9:44:30

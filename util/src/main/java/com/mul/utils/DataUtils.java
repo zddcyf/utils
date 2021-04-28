@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: DataUtils
  * @Author: zdd
  * @CreateDate: 2020/5/18 15:07

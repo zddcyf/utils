@@ -15,8 +15,8 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @ProjectName: JetpackMvvmApp
- * @Package: com.mul.jetpackmvvmapp.config
+ * @ProjectName: utils
+ * @Package: com.mul.utils.config
  * @ClassName: GlobalConfig
  * @Author: zdd
  * @CreateDate: 2020/7/2 9:43

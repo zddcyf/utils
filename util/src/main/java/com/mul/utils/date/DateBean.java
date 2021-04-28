@@ -1,8 +1,8 @@
 package com.mul.utils.date;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils.date
+ * @ProjectName: utils
+ * @Package: com.mul.utils.date
  * @ClassName: DateBean
  * @Author: zdd
  * @CreateDate: 2020/4/22 14:56

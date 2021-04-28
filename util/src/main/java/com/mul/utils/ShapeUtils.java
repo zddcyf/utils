@@ -5,8 +5,8 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: ShapeUtils
  * @Author: zdd
  * @CreateDate: 2020/3/4 8:43

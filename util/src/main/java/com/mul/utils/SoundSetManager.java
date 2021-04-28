@@ -6,8 +6,8 @@ import android.media.AudioManager;
 import com.mul.utils.manager.GlobalManager;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: SoundSetManager
  * @Author: liys
  * @CreateDate: 2021/3/4 10:18:18

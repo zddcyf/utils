@@ -5,8 +5,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon.log
+ * @ProjectName: utils
+ * @Package: com.mul.utils.log
  * @ClassName: LogExceptionResult
  * @Author: zdd
  * @CreateDate: 2021/4/7 15:51:20

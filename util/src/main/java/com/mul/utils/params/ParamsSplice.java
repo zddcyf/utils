@@ -9,9 +9,9 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon.params
- * @ClassName: ParmsSplice
+ * @ProjectName: utils
+ * @Package: com.mul.utils.params
+ * @ClassName: ParamsSplice
  * @Author: zdd
  * @CreateDate: 2020/9/29 14:16:38
  * @Description: 参数拼接

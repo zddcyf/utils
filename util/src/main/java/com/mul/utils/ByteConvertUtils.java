@@ -9,8 +9,8 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: ByteConvertUtils
  * @Author: liys
  * @CreateDate: 2021/3/11 14:23:32

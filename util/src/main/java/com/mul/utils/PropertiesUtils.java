@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * @ProjectName: JetpackMvvmApp
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: PropertiesUtils
  * @Author: zdd
  * @CreateDate: 2020/7/7 17:29

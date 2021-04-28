@@ -34,8 +34,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.utils.glide
+ * @ProjectName: utils
+ * @Package: com.mul.utils.glide
  * @ClassName: CornerTransform
  * @Author: zdd
  * @CreateDate: 2019/12/11 20:30

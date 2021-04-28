@@ -1,9 +1,9 @@
 package com.mul.utils;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.util
- * @ClassName: com.mul.libcommon.StringUtils
+ * @ProjectName: utils
+ * @Package: com.mul.utils
+ * @ClassName: StringUtils
  * @Author: zdd
  * @CreateDate: 2019/12/9 15:03
  * @Description: 转换成字符串的工具类

@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.util
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: FileAccessor
  * @Author: zdd
  * @CreateDate: 2019/12/2 15:09

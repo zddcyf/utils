@@ -11,8 +11,8 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.frame.base.widget
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: Zip
  * @Author: zdd
  * @CreateDate: 2021/4/15 8:55:04

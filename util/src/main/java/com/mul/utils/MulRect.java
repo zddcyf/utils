@@ -3,8 +3,8 @@ package com.mul.utils;
 import java.io.Serializable;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.mul.libcommon
+ * @ProjectName: utils
+ * @Package: com.mul.utils
  * @ClassName: MulRect
  * @Author: zdd
  * @CreateDate: 2021/3/12 11:23:47

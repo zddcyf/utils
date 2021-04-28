@@ -25,8 +25,8 @@ import java.lang.reflect.Method;
 import java.util.Calendar;
 
 /**
- * @ProjectName: FaceIdentify
- * @Package: com.frame.base.manager.device
+ * @ProjectName: utils
+ * @Package: com.mul.utils.device
  * @ClassName: DeviceServiceManager
  * @Author: zdd
  * @CreateDate: 2020/11/11 10:36:32

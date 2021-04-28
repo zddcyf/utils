@@ -13,8 +13,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * @ProjectName: youlinanzhuoyuanshengduan
- * @Package: com.wisdom.tdweilaiapp.util
+ * @ProjectName: utils
+ * @Package: com.mul.utils.date
  * @ClassName: DateUtils
  * @Author: zdd
  * @CreateDate: 2019/12/18 8:41
