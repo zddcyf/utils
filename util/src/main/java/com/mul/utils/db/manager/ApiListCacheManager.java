@@ -24,10 +24,10 @@ public class ApiListCacheManager {
     }
 
     public static ApiListCacheManager get() {
-        return ApiListCacheManagerSington.API_LIST_CACHE_MANAGER;
+        return ApiListCacheSingleton.API_LIST_CACHE_MANAGER;
     }
 
-    private static class ApiListCacheManagerSington {
+    private static class ApiListCacheSingleton {
         private static final ApiListCacheManager API_LIST_CACHE_MANAGER = new ApiListCacheManager();
     }
 

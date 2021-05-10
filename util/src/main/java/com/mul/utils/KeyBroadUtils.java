@@ -17,11 +17,11 @@ import android.view.inputmethod.InputMethodManager;
  * @UpdateRemark: 更新说明
  * @Version: 1.0.0
  */
-public class KeyboardUtils {
+public class KeyBroadUtils {
     /**
      * 关闭键盘
      */
-    public static void closeKeyBorad(View view) {
+    public static void closeKeyBroad(View view) {
         InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -29,7 +29,7 @@ public class KeyboardUtils {
     /**
      * 打开键盘
      */
-    public static void openKeyBorad(Activity activity) {
+    public static void openKeyBroad(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) return;
         if (activity.getCurrentFocus() == null) {
