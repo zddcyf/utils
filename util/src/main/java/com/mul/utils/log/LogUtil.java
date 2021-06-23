@@ -160,7 +160,7 @@ public class LogUtil {
         }
         try {
 //            String fileName = tag.substring(0, tag.indexOf("-")) + "-" + DateUtils.INSTANCE.getDate() + ".log";
-            String fileName = tag.substring(0, tag.indexOf("-")) + ".log";
+            String fileName = tag + ".log";
             if (Environment.getExternalStorageState().equals(
                     Environment.MEDIA_MOUNTED)) {
                 String path = FileAccessor.INSTANCE.FILE_FILE_CRASH_LOG
