@@ -18,7 +18,8 @@ public class LogUtil {
     }
 
     public static void v(String tag, String message) {
-        Log.v(getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.v(getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void saveV(String message) {
@@ -26,8 +27,9 @@ public class LogUtil {
     }
 
     public static void saveV(String tag, String message) {
-        Log.v(getTag(tag), message);
-        save(GlobalManager.INSTANCE.debug, getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.v(getTag(logInfo, tag), getMessage(logInfo, message));
+        save(GlobalManager.INSTANCE.debug, getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void d(String message) {
@@ -35,7 +37,8 @@ public class LogUtil {
     }
 
     public static void d(String tag, String message) {
-        Log.d(getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.d(getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void saveD(String message) {
@@ -43,8 +46,9 @@ public class LogUtil {
     }
 
     public static void saveD(String tag, String message) {
-        Log.d(getTag(tag), message);
-        save(GlobalManager.INSTANCE.debug, getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.d(getTag(logInfo, tag), getMessage(logInfo, message));
+        save(GlobalManager.INSTANCE.debug, getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void i(String message) {
@@ -52,7 +56,8 @@ public class LogUtil {
     }
 
     public static void i(String tag, String message) {
-        Log.i(getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.i(getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void saveI(String message) {
@@ -60,8 +65,9 @@ public class LogUtil {
     }
 
     public static void saveI(String tag, String message) {
-        Log.i(getTag(tag), message);
-        save(GlobalManager.INSTANCE.debug, getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.i(getTag(logInfo, tag), getMessage(logInfo, message));
+        save(GlobalManager.INSTANCE.debug, getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void w(String message) {
@@ -69,7 +75,8 @@ public class LogUtil {
     }
 
     public static void w(String tag, String message) {
-        Log.w(getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.w(getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void saveW(String message) {
@@ -77,8 +84,9 @@ public class LogUtil {
     }
 
     public static void saveW(String tag, String message) {
-        Log.w(getTag(tag), message);
-        save(GlobalManager.INSTANCE.debug, getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.w(getTag(logInfo, tag), getMessage(logInfo, message));
+        save(GlobalManager.INSTANCE.debug, getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void e(String message) {
@@ -86,7 +94,8 @@ public class LogUtil {
     }
 
     public static void e(String tag, String message) {
-        Log.e(getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.e(getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
     public static void saveE(String message) {
@@ -94,21 +103,24 @@ public class LogUtil {
     }
 
     public static void saveE(String tag, String message) {
-        Log.e(getTag(tag), message);
-        save(GlobalManager.INSTANCE.error, getTag(tag), message);
+        String[] logInfo = getFunctionInfo();
+        Log.e(getTag(logInfo, tag), getMessage(logInfo, message));
+        save(GlobalManager.INSTANCE.error, getTag(logInfo, tag), getMessage(logInfo, message));
     }
 
-    private static String getTag(String tag) {
-        String[] logInfo = getFunctionInfo();
+    private static String getTag(String[] logInfo, String tag) {
 //        return String.format("%s-%s"
 //                , tag
 //                , logInfo[2]);
+        return !TextUtils.isEmpty(tag) ? tag :
+                !TextUtils.isEmpty(logInfo[1]) ? logInfo[1].substring(0, logInfo[1].indexOf(".")) : LogTagConfig.UTILS_TAG;
+    }
+
+    public static String getMessage(String[] logInfo, String message) {
         return String.format("%s-%s-%s"
-//                logInfo[1].substring(0, logInfo[1].indexOf("."))
-                , !TextUtils.isEmpty(tag) ? tag :
-                        !TextUtils.isEmpty(logInfo[1]) ? logInfo[1].substring(0, logInfo[1].indexOf(".")) : LogTagConfig.UTILS_TAG
                 , logInfo[2]
-                , logInfo[3]);
+                , logInfo[3]
+                , message);
     }
 
     private static String[] getFunctionInfo() {
