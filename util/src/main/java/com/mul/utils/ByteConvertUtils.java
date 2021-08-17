@@ -9,7 +9,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: ByteConvertUtils
  * @Author: liys

@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: FileAccessor
  * @Author: zdd

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: AppInstall
  * @Author: zdd

@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 import com.mul.utils.manager.GlobalManager;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: CornerTransform
  * @Author: zdd

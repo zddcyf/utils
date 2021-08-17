@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: ShapeUtils
  * @Author: zdd

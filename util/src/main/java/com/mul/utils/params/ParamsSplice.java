@@ -9,9 +9,9 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.params
- * @ClassName: ParamsSplice
+ * @ClassName: ParmsSplice
  * @Author: zdd
  * @CreateDate: 2020/9/29 14:16:38
  * @Description: 参数拼接

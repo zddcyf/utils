@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.date
  * @ClassName: DateUtils
  * @Author: zdd

@@ -20,7 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import java.security.MessageDigest;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.glide
  * @ClassName: CornerTransform
  * @Author: zdd

@@ -5,7 +5,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.log
  * @ClassName: LogExceptionResult
  * @Author: zdd

@@ -1,7 +1,7 @@
 package com.mul.utils;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: StringUtils
  * @Author: zdd

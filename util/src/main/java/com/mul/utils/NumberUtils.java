@@ -5,7 +5,7 @@ import com.mul.utils.log.LogUtil;
 import java.math.BigDecimal;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: NumberUtils
  * @Author: zdd
@@ -23,14 +23,8 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static String add(int var1, int var2) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        String result = bd1.add(bd2).toString();
-        return result;
+    public static <T> String add(T var1, T var2) {
+        return add(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
     /**
@@ -39,226 +33,140 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static String add(double var1, double var2) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        String result = bd1.add(bd2).toString();
-        return result;
+    public static <T> String add(T var1, T var2, int scale) {
+        return add(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
     }
 
     /**
      * 加法运算
      *
+     * @param var1         加数
+     * @param var2         被加数
+     * @param scale        保留小数点后位数 如果是-1则不限制位数
+     * @param roundingMode 保留小数点模式
+     */
+    public static <T> String add(T var1, T var2, int scale, int roundingMode) {
+//        if (var1 < var2) {
+//            return String.format("%s", var1);
+//        }
+        if (!DataUtils.isBasicType(var1) && !DataUtils.isBasicType(var2)) {
+            LogUtil.e("数字格式不正确");
+            return "0";
+        }
+        BigDecimal bd1 = new BigDecimal(var1.toString());
+        BigDecimal bd2 = new BigDecimal(var2.toString());
+        if (scale == -1) {
+            return bd1.add(bd2).toString();
+        }
+        int indexScale = scale + 2;
+        String result = bd1.add(bd2).setScale(indexScale, roundingMode).toString();
+        String data = result.substring(0, result.lastIndexOf(".") + (indexScale - 1));
+        int index = data.lastIndexOf(".") + 1;
+        if (index == data.length() || Integer.parseInt(data.substring(index)) == 0) {
+            return data.substring(0, data.lastIndexOf("."));
+        } else {
+            return data;
+        }
+    }
+
+    /**
+     * 减法运算
+     *
      * @param var1 加数
      * @param var2 被加数
      */
-    public static String add(String var1, String var2) {
+    public static <T> String subtract(T var1, T var2) {
+        return subtract(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
+    }
+
+    /**
+     * 减法运算
+     *
+     * @param var1 加数
+     * @param var2 被加数
+     */
+    public static <T> String subtract(T var1, T var2, int scale) {
+        return subtract(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
+    }
+
+    /**
+     * 减法运算
+     *
+     * @param var1         加数
+     * @param var2         被加数
+     * @param scale        保留小数点后位数 如果是-1则不限制位数
+     * @param roundingMode 保留小数点模式
+     */
+    public static <T> String subtract(T var1, T var2, int scale, int roundingMode) {
+//        if (var1 < var2) {
+//            return String.format("%s", var1);
+//        }
         if (!DataUtils.isBasicType(var1) && !DataUtils.isBasicType(var2)) {
             LogUtil.e("数字格式不正确");
             return "0";
         }
-
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        String result = bd1.add(bd2).toString();
-        return result;
-    }
-
-    /**
-     * 减法运算
-     *
-     * @param var1 减数
-     * @param var2 被减数
-     */
-    public static String subtract(int var1, int var2) {
-        return subtract(var1, var2, -1);
-    }
-
-    /**
-     * 减法运算
-     *
-     * @param var1  减数
-     * @param var2  被减数
-     * @param scale 保留小数点后位数
-     */
-    public static String subtract(int var1, int var2, int scale) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
+        BigDecimal bd1 = new BigDecimal(var1.toString());
+        BigDecimal bd2 = new BigDecimal(var2.toString());
+        if (scale == -1) {
+            return bd1.subtract(bd2).toString();
         }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        if (scale != -1) {
-            int indexScale = scale + 1;
-            String result = bd1.subtract(bd2).setScale(indexScale, BigDecimal.ROUND_HALF_UP).toString();
-            return result.substring(0, result.indexOf(".") + indexScale);
+        int indexScale = scale + 2;
+        String result = bd1.subtract(bd2).setScale(indexScale, roundingMode).toString();
+        String data = result.substring(0, result.lastIndexOf(".") + (indexScale - 1));
+        int index = data.lastIndexOf(".") + 1;
+        if (index == data.length() || Integer.parseInt(data.substring(index)) == 0) {
+            return data.substring(0, data.lastIndexOf("."));
+        } else {
+            return data;
         }
-        return bd1.subtract(bd2).toString();
-    }
-
-    /**
-     * 减法运算
-     *
-     * @param var1 减数
-     * @param var2 被减数
-     */
-    public static String subtract(double var1, double var2) {
-        return subtract(var1, var2, -1);
-    }
-
-    /**
-     * 减法运算
-     *
-     * @param var1  减数
-     * @param var2  被减数
-     * @param scale 保留小数点后位数
-     */
-    public static String subtract(double var1, double var2, int scale) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        if (scale != -1) {
-            int indexScale = scale + 1;
-            String result = bd1.subtract(bd2).setScale(indexScale, BigDecimal.ROUND_HALF_UP).toString();
-            return result.substring(0, result.indexOf(".") + indexScale);
-        }
-        return bd1.subtract(bd2).toString();
-    }
-
-    /**
-     * 减法运算
-     *
-     * @param var1  减数
-     * @param var2  被减数
-     */
-    public static String subtract(String var1, String var2) {
-        return subtract(var1, var2, -1);
-    }
-
-    /**
-     * 减法运算
-     *
-     * @param var1  减数
-     * @param var2  被减数
-     * @param scale 保留小数点后位数
-     */
-    public static String subtract(String var1, String var2, int scale) {
-        if (!DataUtils.isBasicType(var1) && !DataUtils.isBasicType(var2)) {
-            LogUtil.e("数字格式不正确");
-            return "0";
-        }
-
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        if (scale != -1) {
-            int indexScale = scale + 1;
-            String result = bd1.subtract(bd2).setScale(indexScale, BigDecimal.ROUND_HALF_UP).toString();
-            return result.substring(0, result.indexOf(".") + indexScale);
-        }
-        return bd1.subtract(bd2).toString();
-    }
-
-
-    /**
-     * 乘法运算
-     *
-     * @param var1  乘数
-     * @param var2  被乘数
-     * @param scale 保留小数点后位数
-     */
-    public static String multiply(int var1, int var2, int scale) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        if (scale != -1) {
-            int indexScale = scale + 1;
-            String result = bd1.multiply(bd2).setScale(indexScale, BigDecimal.ROUND_HALF_UP).toString();
-            if (scale == 0) {
-                return result.substring(0, result.indexOf("."));
-            }else {
-                return result.substring(0, result.indexOf(".") + indexScale);
-            }
-        }
-        return bd1.multiply(bd2).toString();
     }
 
     /**
      * 乘法运算
      *
-     * @param var1  乘数
-     * @param var2  被乘数
-     * @param scale 保留小数点后位数
+     * @param var1 加数
+     * @param var2 被加数
      */
-    public static String multiply(double var1, double var2, int scale) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-        if (scale != -1) {
-            int indexScale = scale + 1;
-            String result = bd1.multiply(bd2).setScale(indexScale, BigDecimal.ROUND_HALF_UP).toString();
-            if (scale == 0) {
-                return result.substring(0, result.indexOf("."));
-            }else {
-                return result.substring(0, result.indexOf(".") + indexScale);
-            }
-        }
-        return bd1.multiply(bd2).toString();
+    public static <T> String multiply(T var1, T var2) {
+        return multiply(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
     /**
      * 乘法运算
      *
-     * @param var1  乘数
-     * @param var2  被乘数
-     * @param scale 保留小数点后位数
+     * @param var1 加数
+     * @param var2 被加数
      */
-    public static String multiply(String var1, String var2, int scale) {
+    public static <T> String multiply(T var1, T var2, int scale) {
+        return multiply(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
+    }
+
+    /**
+     * 乘法运算
+     *
+     * @param var1         加数
+     * @param var2         被加数
+     * @param scale        保留小数点后位数 如果是-1则不限制位数
+     * @param roundingMode 保留小数点模式
+     */
+    public static <T> String multiply(T var1, T var2, int scale, int roundingMode) {
+//        if (var1 < var2) {
+//            return String.format("%s", var1);
+//        }
         if (!DataUtils.isBasicType(var1) && !DataUtils.isBasicType(var2)) {
             LogUtil.e("数字格式不正确");
             return "0";
         }
-
-        BigDecimal bd1 = new BigDecimal(var1);
-        BigDecimal bd2 = new BigDecimal(var2);
-
-        if (scale != -1) {
-            int indexScale = scale + 1;
-            String result = bd1.multiply(bd2).setScale(indexScale, BigDecimal.ROUND_HALF_UP).toString();
-            if (scale == 0) {
-                return result.substring(0, result.indexOf("."));
-            }else {
-                return result.substring(0, result.indexOf(".") + indexScale);
-            }
+        BigDecimal bd1 = new BigDecimal(var1.toString());
+        BigDecimal bd2 = new BigDecimal(var2.toString());
+        if (scale == -1) {
+            return bd1.multiply(bd2).toString();
         }
-        return bd1.multiply(bd2).toString();
-    }
-
-    /**
-     * 除法运算
-     *
-     * @param var1  除数
-     * @param var2  被除数
-     * @param scale 保留小数点后位数
-     */
-    public static String divide(int var1, int var2, int scale) {
-        if (var2 <= 0) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-
-        int indexScale = scale + 1;
-        String result = bd1.divide(bd2, indexScale, BigDecimal.ROUND_HALF_UP).toString();
-        String data = result.substring(0, result.lastIndexOf(".") + indexScale);
-        if (Integer.parseInt(data.substring(data.lastIndexOf(".") + 1)) == 0) {
+        int indexScale = scale + 2;
+        String result = bd1.multiply(bd2).setScale(indexScale, roundingMode).toString();
+        String data = result.substring(0, result.lastIndexOf(".") + (indexScale - 1));
+        int index = data.lastIndexOf(".") + 1;
+        if (index == data.length() || Integer.parseInt(data.substring(index)) == 0) {
             return data.substring(0, data.lastIndexOf("."));
         } else {
             return data;
@@ -268,25 +176,11 @@ public class NumberUtils {
     /**
      * 除法运算
      *
-     * @param var1  除数
-     * @param var2  被除数
-     * @param scale 保留小数点后位数
+     * @param var1 除数
+     * @param var2 被除数
      */
-    public static String divide(double var1, double var2, int scale) {
-        if (var1 < var2) {
-            return String.format("%s", var1);
-        }
-        BigDecimal bd1 = new BigDecimal(String.format("%s", var1));
-        BigDecimal bd2 = new BigDecimal(String.format("%s", var2));
-
-        int indexScale = scale + 1;
-        String result = bd1.divide(bd2, indexScale, BigDecimal.ROUND_HALF_UP).toString();
-        String data = result.substring(0, result.lastIndexOf(".") + indexScale);
-        if (Integer.parseInt(data.substring(data.lastIndexOf(".") + 1)) == 0) {
-            return data.substring(0, data.lastIndexOf("."));
-        } else {
-            return data;
-        }
+    public static <T> String divide(T var1, T var2) {
+        return divide(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
     /**
@@ -296,28 +190,45 @@ public class NumberUtils {
      * @param var2  被除数
      * @param scale 保留小数点后位数
      */
-    public static String divide(String var1, String var2, int scale) {
+    public static <T> String divide(T var1, T var2, int scale) {
+        return divide(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
+    }
+
+    /**
+     * 除法运算
+     *
+     * @param var1         除数
+     * @param var2         被除数
+     * @param scale        保留小数点后位数 如果是-1则不限制位数
+     * @param roundingMode 保留小数点模式
+     */
+    public static <T> String divide(T var1, T var2, int scale, int roundingMode) {
         if (!DataUtils.isBasicType(var1) && !DataUtils.isBasicType(var2)) {
             LogUtil.e("数字格式不正确");
             return "0";
         }
 
-        BigDecimal bd1 = new BigDecimal(var1);
-        BigDecimal bd2 = new BigDecimal(var2);
-
-        /**
-         * -1为小于
-         * 0为等于
-         * 1为大于
-         */
-        if (bd1.compareTo(bd2) < 0) {
-            return var1;
+        if (DataUtils.isEmpty(var1) || DataUtils.isEmpty(var2)) {
+            LogUtil.i("请填写正确数字");
+            return "0";
         }
 
-        int indexScale = scale + 1;
-        String result = bd1.divide(bd2, indexScale, BigDecimal.ROUND_HALF_UP).toString();
-        String data = result.substring(0, result.lastIndexOf(".") + indexScale);
-        if (Integer.parseInt(data.substring(data.lastIndexOf(".") + 1)) == 0) {
+        if (DataUtils.isContainsOneToNine(var2.toString())) {
+            LogUtil.i("除数不能为0");
+            return "0";
+        }
+        BigDecimal bd1 = new BigDecimal(var1.toString());
+        BigDecimal bd2 = new BigDecimal(var2.toString());
+
+        if (scale == -1) {
+            return bd1.divide(bd2, roundingMode).toString();
+        }
+
+        int indexScale = scale + 2;
+        String result = bd1.divide(bd2, indexScale, roundingMode).toString();
+        String data = result.substring(0, result.lastIndexOf(".") + (indexScale - 1));
+        int index = data.lastIndexOf(".") + 1;
+        if (index == data.length() || Integer.parseInt(data.substring(index)) == 0) {
             return data.substring(0, data.lastIndexOf("."));
         } else {
             return data;

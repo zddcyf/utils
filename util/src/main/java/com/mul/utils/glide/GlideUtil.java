@@ -7,15 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringDef;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -34,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.glide
  * @ClassName: CornerTransform
  * @Author: zdd
@@ -46,398 +42,87 @@ import java.util.List;
  * @Version: 1.0.0
  */
 public class GlideUtil {
-    /**
-     * glide展示样式控制器
-     */
-    @StringDef({GlideCropEnum.GCE_DEFAULT, GlideCropEnum.CIRCLE_CROP, GlideCropEnum.CENTER_CROP})
-    public @interface GlideCropEnum {
-        String GCE_DEFAULT = "100";// 默认样式。不设置
-        String CIRCLE_CROP = "101";// 设置成圆形
-        String CENTER_CROP = "102";// 中心裁剪
+    public static <T> void load(ImageView imageView, T imgUrl) {
+        load(imageView, imgUrl, -1, -1, -1, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
     }
 
-    public static final long GTFE_DEFAULT = 200;//默认为所有的都有圆角
-    public static final long CROP_TOP_LR = 201;// 设置只显示顶部的两个圆角
-    public static final long CROP_BOTTOM_LR = 202;// 设置只显示底部的两个圆角
+    public static <T> void load(ImageView imageView, T imgUrl, int placeholderImg) {
+        load(imageView, imgUrl, placeholderImg, placeholderImg, -1, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
+    }
 
-    /**
-     * glide圆角控制器
-     */
-    @LongDef({GTFE_DEFAULT, CROP_TOP_LR, CROP_BOTTOM_LR})
-    public @interface GlideTransformationEnum {
+    public static <T> void load(ImageView imageView, T imgUrl, int placeholderImg, int errorImg) {
+        load(imageView, imgUrl, placeholderImg, errorImg, -1, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, T imgUrl, int placeholderImg, int errorImg, int radius) {
+        load(imageView, imgUrl, placeholderImg, errorImg, radius, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, T imgUrl, int placeholderImg, int errorImg, int radius, @GlideTransformationEnum long glideTransformationEnum) {
+        load(imageView, imgUrl, placeholderImg, errorImg, radius, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl) {
+        load(imageView, imgUrl, -1, -1, radius, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, int placeholderImg) {
+        load(imageView, imgUrl, placeholderImg, placeholderImg, radius, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, int placeholderImg, int errorImg) {
+        load(imageView, imgUrl, placeholderImg, errorImg, radius, GlideTransformationEnum.GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum) {
+        load(imageView, imgUrl, placeholderImg, errorImg, radius, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
+        load(imageView, imgUrl, placeholderImg, errorImg, radius, glideTransformationEnum, crops);
+    }
+
+    public static <T> void load(ImageView imageView, T imgUrl, @GlideCropEnum String... crops) {
+        load(imageView, imgUrl, -1, -1, -1, GlideTransformationEnum.GTFE_DEFAULT, crops);
+    }
+
+    public static <T> void load(ImageView imageView, T imgUrl, int placeholderImg, @GlideCropEnum String... crops) {
+        load(imageView, imgUrl, placeholderImg, placeholderImg, -1, GlideTransformationEnum.GTFE_DEFAULT, crops);
+    }
+
+    public static <T> void load(ImageView imageView, T imgUrl, int placeholderImg, int errorImg, @GlideCropEnum String... crops) {
+        load(imageView, imgUrl, placeholderImg, errorImg, -1, GlideTransformationEnum.GTFE_DEFAULT, crops);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, int placeholderImg, int errorImg, @GlideCropEnum String... crops) {
+        load(imageView, imgUrl, placeholderImg, errorImg, radius, GlideTransformationEnum.GTFE_DEFAULT, crops);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, @GlideTransformationEnum long glideTransformationEnum) {
+        load(imageView, imgUrl, -1, -1, radius, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
+    }
+
+    public static <T> void load(ImageView imageView, int radius, T imgUrl, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum) {
+        load(imageView, imgUrl, placeholderImg, placeholderImg, radius, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
     }
 
     /**
-     * 网络地址
+     * 加载图片
      *
-     * @param imageView view
-     * @param url       图片地址
+     * @param imageView               view
+     * @param url                     图片地址
+     * @param placeholderImg          缓存图片
+     * @param errorImg                异常加载的图片
+     * @param radius                  圆角度
+     * @param glideTransformationEnum glide圆角控制器
+     * @param crops                   glide展示样式控制器
      */
-    public static void load(ImageView imageView, String url) {
-        load(imageView, url, null, -1, -1, -1, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, String url, @DrawableRes int placeholderImg) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, int errorImg) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, String url, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, -1, -1, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, int errorImg, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int raduis, String url) {
-        load(imageView, url, null, -1, -1, -1, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, String url) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, String url) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int raduis, String url, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, -1, -1, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, String url, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, String url, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, String url, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, url, null, -1, -1, -1, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, String url, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, -1, -1, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, String url, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int raduis, String url, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, url, null, -1, -1, -1, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, String url, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, String url, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int raduis, String url, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, -1, -1, raduis, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, String url, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, placeholderImg, raduis, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, String url, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, url, null, -1, placeholderImg, errorImg, raduis, glideTransformationEnum, crops);
-    }
-
-    /**
-     * drawable地址
-     *
-     * @param imageView view
-     * @param drawPath  图片路径
-     */
-    public static void load(ImageView imageView, int drawPath) {
-        load(imageView, "", null, drawPath, -1, -1, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, @GlideTransformationEnum long glideTransformationEnum, int raduis, int drawPath) {
-        load(imageView, "", null, drawPath, -1, -1, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg) {
-        load(imageView, "", null, drawPath, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, int errorImg) {
-        load(imageView, "", null, drawPath, placeholderImg, errorImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int drawPath, @GlideCropEnum String... crops) {
-        load(imageView, "", null, drawPath, -1, -1, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, @GlideCropEnum String... crops) {
-        load(imageView, "", null, drawPath, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, int errorImg, @GlideCropEnum String... crops) {
-        load(imageView, "", null, drawPath, placeholderImg, errorImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int drawPath, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", null, drawPath, -1, -1, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", null, drawPath, placeholderImg, placeholderImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", null, drawPath, placeholderImg, errorImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int drawPath, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", null, drawPath, -1, -1, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", null, drawPath, placeholderImg, placeholderImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int drawPath, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", null, drawPath, placeholderImg, errorImg, -1, glideTransformationEnum, crops);
-    }
-
-    /**
-     * 本地文件
-     *
-     * @param imageView view
-     * @param filePath  文件路径
-     */
-    public static void load(ImageView imageView, File filePath) {
-        load(imageView, "", filePath, -1, -1, -1, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, int errorImg) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, File filePath, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, -1, -1, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, int errorImg, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int raduis, File filePath) {
-        load(imageView, "", filePath, -1, -1, -1, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, File filePath) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, File filePath) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int raduis, File filePath, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, -1, -1, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, File filePath, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, File filePath, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, File filePath, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", filePath, -1, -1, -1, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, File filePath, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, -1, -1, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, File filePath, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int raduis, File filePath, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", filePath, -1, -1, -1, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, File filePath, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, File filePath, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int raduis, File filePath, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, -1, -1, raduis, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, File filePath, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, placeholderImg, raduis, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, File filePath, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, "", filePath, -1, placeholderImg, errorImg, raduis, glideTransformationEnum, crops);
-    }
-
-    /**
-     * bitmap
-     *
-     * @param imageView view
-     */
-    public static void load(ImageView imageView, Bitmap mBitmap) {
-        load(imageView, mBitmap, -1, -1, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, @DrawableRes int placeholderImg) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, int errorImg) {
-        load(imageView, mBitmap, placeholderImg, errorImg, -1, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, -1, -1, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, int errorImg, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, errorImg, -1, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int raduis, Bitmap mBitmap) {
-        load(imageView, mBitmap, -1, -1, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, Bitmap mBitmap) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, Bitmap mBitmap) {
-        load(imageView, mBitmap, placeholderImg, errorImg, raduis, GTFE_DEFAULT, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int raduis, Bitmap mBitmap, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, -1, -1, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, Bitmap mBitmap, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, Bitmap mBitmap, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, errorImg, raduis, GTFE_DEFAULT, crops);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, mBitmap, -1, -1, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, mBitmap, placeholderImg, errorImg, -1, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, -1, -1, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, Bitmap mBitmap, int placeholderImg, int errorImg, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, errorImg, -1, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int raduis, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, mBitmap, -1, -1, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum) {
-        load(imageView, mBitmap, placeholderImg, errorImg, raduis, glideTransformationEnum, GlideCropEnum.GCE_DEFAULT);
-    }
-
-    public static void load(ImageView imageView, int raduis, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, -1, -1, raduis, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int raduis, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, placeholderImg, raduis, glideTransformationEnum, crops);
-    }
-
-    public static void load(ImageView imageView, int placeholderImg, int errorImg, int raduis, Bitmap mBitmap, @GlideTransformationEnum long glideTransformationEnum, @GlideCropEnum String... crops) {
-        load(imageView, mBitmap, placeholderImg, errorImg, raduis, glideTransformationEnum, crops);
-    }
-
     @SuppressLint("CheckResult")
-    public static void load(ImageView imageView
-            , String url
-            , File filePath
-            , int drawPath
+    public static <T> void load(ImageView imageView
+            , T url
             , int placeholderImg
             , int errorImg
-            , int raduis
+            , int radius
             , @GlideTransformationEnum long glideTransformationEnum
             , @GlideCropEnum String... crops) {
         Context mContext = imageView.getContext();
@@ -452,18 +137,19 @@ public class GlideUtil {
         RequestManager requestManager = Glide.with(mContext);
         RequestBuilder<Drawable> load;
         // 图片地址
-        if (-1 != drawPath) {
-            load = requestManager.load(drawPath);
-        } else if (null != filePath) {
-            load = requestManager.load(Uri.fromFile(filePath));
-        } else if (!TextUtils.isEmpty(url)) {
-            url = url.replace("http://", "https://");
+        if (url instanceof Integer && mContext.getResources().getResourceTypeName((Integer) url).contains("drawable")) {
+            load = requestManager.load(url);
+        } else if (url instanceof File) {
+            load = requestManager.load(Uri.fromFile((File) url));
+        } else if (url instanceof String) {
+            load = requestManager.load(url.toString().replace("http://", "https://"));
+        } else if (url instanceof Bitmap) {
             load = requestManager.load(url);
         } else {
             load = requestManager.load("");
         }
 
-        if (-1 != raduis) {
+        if (-1 != radius) {
             // .asBitmap()
             // .skipMemoryCache(true) 这两个属性必须使用。否则圆角不生效
             requestManager.asBitmap();
@@ -487,31 +173,30 @@ public class GlideUtil {
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
         requestOptions.dontAnimate();
 
-
-        if (-1 != raduis) {
+        if (-1 != radius) {
             // .asBitmap()
             // .skipMemoryCache(true) 这两个属性必须使用。否则圆角不生效
-            CornerTransform transformation = new CornerTransform(imageView.getContext(), ScreenUtil.dpToPx(raduis));
+            CornerTransform transformation = new CornerTransform(imageView.getContext(), ScreenUtil.dpToPx(radius));
             //只是绘制左上角和右上角圆角
-            if (glideTransformationEnum == GTFE_DEFAULT) {
+            if (glideTransformationEnum == GlideTransformationEnum.GTFE_DEFAULT) {
                 transformation.setExceptCorner(false, false, false, false);
 //                requestOptions.skipMemoryCache(true);
                 if (glideCropEnums.contains(GlideCropEnum.CENTER_CROP)) {
-                    requestOptions.transform(new CenterCrop(), new RoundedCorners(ScreenUtil.dpToPx(raduis)));
+                    requestOptions.transform(new CenterCrop(), new RoundedCorners(ScreenUtil.dpToPx(radius)));
                 }
                 if (glideCropEnums.contains(GlideCropEnum.CIRCLE_CROP)) {
-                    requestOptions.transform(new CircleCrop(), new RoundedCorners(ScreenUtil.dpToPx(raduis)));
+                    requestOptions.transform(new CircleCrop(), new RoundedCorners(ScreenUtil.dpToPx(radius)));
                 }
                 if (glideCropEnums.contains(GlideCropEnum.GCE_DEFAULT)) {
-                    requestOptions.transform(new CenterCrop(), new RoundedCorners(ScreenUtil.dpToPx(raduis)));
+                    requestOptions.transform(new CenterCrop(), new RoundedCorners(ScreenUtil.dpToPx(radius)));
                 }
             }
-            if (glideTransformationEnum == CROP_TOP_LR) {
+            if (glideTransformationEnum == GlideTransformationEnum.CROP_TOP_LR) {
                 transformation.setExceptCorner(false, false, true, true);
 //                load.skipMemoryCache(true);
                 load.transform(transformation);
             }
-            if (glideTransformationEnum == CROP_BOTTOM_LR) {
+            if (glideTransformationEnum == GlideTransformationEnum.CROP_BOTTOM_LR) {
                 transformation.setExceptCorner(true, true, false, false);
 //                load.skipMemoryCache(true);
                 load.transform(transformation);
@@ -520,84 +205,12 @@ public class GlideUtil {
 
         load.apply(requestOptions);
 
-//        ViewGroup.LayoutParams params = imageView.getLayoutParams();
-//        if (null != params && params.width > 0 && params.height > 0) {
-//            load.override(params.width, params.height);
-//        }
-
-        load.into(imageView);
-    }
-
-    @SuppressLint("CheckResult")
-    public static void load(ImageView imageView
-            , Bitmap mBitmap
-            , int placeholderImg
-            , int errorImg
-            , int raduis
-            , @GlideTransformationEnum long glideTransformationEnum
-            , @GlideCropEnum String... crops) {
-        Context mContext = imageView.getContext();
-        if (null == mContext) {
-            return;
-        }
-
-        if (mContext instanceof Activity && isDestroy((Activity) mContext)) {
-            return;
-        }
-
-        RequestManager requestManager = Glide.with(mContext);
-        RequestBuilder<Drawable> load;
-        // 图片地址
-        load = requestManager.load(mBitmap);
-
-        if (-1 != raduis) {
-            // .asBitmap()
-            // .skipMemoryCache(true) 这两个属性必须使用。否则圆角不生效
-            requestManager.asBitmap();
-        }
-
-        // 图片样式
-        RequestOptions requestOptions = new RequestOptions();
-        if (-1 != placeholderImg) {
-            requestOptions.placeholder(placeholderImg);
-        }
-        if (-1 != errorImg) {
-            requestOptions.error(errorImg);
-        }
-        List<String> glideCropEnums = Arrays.asList(crops);
-        if (glideCropEnums.contains(GlideCropEnum.CENTER_CROP)) {
-            requestOptions.centerCrop();
-        }
-        if (glideCropEnums.contains(GlideCropEnum.CIRCLE_CROP)) {
-            requestOptions.circleCrop();
-        }
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.dontAnimate();
-        load.apply(requestOptions);
-
-        if (-1 != raduis) {
-            // .asBitmap()
-            // .skipMemoryCache(true) 这两个属性必须使用。否则圆角不生效
-            CornerTransform transformation = new CornerTransform(imageView.getContext(), ScreenUtil.dpToPx(raduis));
-            //只是绘制左上角和右上角圆角
-            if (glideTransformationEnum == GTFE_DEFAULT) {
-                transformation.setExceptCorner(false, false, false, false);
+        if (url instanceof Bitmap) {
+            ViewGroup.LayoutParams params = imageView.getLayoutParams();
+            if (null != params && params.width > 0 && params.height > 0) {
+                load.override(params.width, params.height);
             }
-            if (glideTransformationEnum == CROP_TOP_LR) {
-                transformation.setExceptCorner(false, false, true, true);
-            }
-            if (glideTransformationEnum == CROP_BOTTOM_LR) {
-                transformation.setExceptCorner(true, true, false, false);
-            }
-//            load.skipMemoryCache(true);
-            load.transform(transformation);
         }
-
-        ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        if (null != params && params.width > 0 && params.height > 0) {
-            load.override(params.width, params.height);
-        }
-
         load.into(imageView);
     }
 
@@ -633,9 +246,5 @@ public class GlideUtil {
                 }
             }
         });
-    }
-
-    public interface MySimpleTarget {
-        void onResourceReady(@NonNull Drawable resource);
     }
 }

@@ -1,8 +1,8 @@
 package com.mul.utils.deivice;
 
 /**
- * @ProjectName: utils
- * @Package: com.mul.utils.deivice
+ * @ProjectName: MulUtils
+ * @Package: com.mul.utils.device
  * @ClassName: CommandResult
  * @Author: zdd
  * @CreateDate: 2021/4/15 17:21:11

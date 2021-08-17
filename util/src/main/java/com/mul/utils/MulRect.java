@@ -3,7 +3,7 @@ package com.mul.utils;
 import java.io.Serializable;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: MulRect
  * @Author: zdd

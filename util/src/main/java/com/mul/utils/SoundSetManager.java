@@ -6,10 +6,10 @@ import android.media.AudioManager;
 import com.mul.utils.manager.GlobalManager;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: SoundSetManager
- * @Author: liys
+ * @Author: zdd
  * @CreateDate: 2021/3/4 10:18:18
  * @Description: 系统声音控制类
  * @UpdateUser: 更新者
@@ -24,12 +24,12 @@ public class SoundSetManager {
         audioManager = (AudioManager) GlobalManager.INSTANCE.context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    private static class SoundSetManagerSingleton {
+    private static class SoundSetSingleton {
         private static final SoundSetManager SOUND_SET_MANAGER = new SoundSetManager();
     }
 
     public static SoundSetManager get() {
-        return SoundSetManagerSingleton.SOUND_SET_MANAGER;
+        return SoundSetSingleton.SOUND_SET_MANAGER;
     }
 
     /**

@@ -11,9 +11,10 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 public class MACManager {
+    @SuppressLint("StaticFieldLeak")
     private static MACManager macManager;
 
-    private Context context;
+    private final Context context;
 
     private MACManager(Context context) {
         this.context = context;

@@ -1,7 +1,7 @@
 package com.mul.utils.date;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.date
  * @ClassName: DateBean
  * @Author: zdd

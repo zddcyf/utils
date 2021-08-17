@@ -3,7 +3,7 @@ package com.mul.utils.params;
 import java.util.Comparator;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.params
  * @ClassName: MapKeyComparator
  * @Author: zdd

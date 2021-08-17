@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils
  * @ClassName: DataUtils
  * @Author: zdd
@@ -90,6 +90,17 @@ public class DataUtils {
                 return false;
             }
         }
+    }
+
+    /**
+     * 判断是否为数字 true为是 false为不是
+     *
+     * @param data 源数据
+     * @return 是否包含1-9
+     */
+    public static boolean isContainsOneToNine(String data) {
+        Pattern pattern = Pattern.compile("[^1-9]*[.]*[\\-]*");
+        return pattern.matcher(data).matches();
     }
 
     public static int parseInt(String string) {

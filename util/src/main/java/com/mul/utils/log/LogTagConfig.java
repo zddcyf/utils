@@ -1,7 +1,7 @@
 package com.mul.utils.log;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.log
  * @ClassName: LogTagConfig
  * @Author: zdd

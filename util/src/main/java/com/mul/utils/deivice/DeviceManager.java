@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 import java.util.Calendar;
 
 /**
- * @ProjectName: utils
+ * @ProjectName: MulUtils
  * @Package: com.mul.utils.device
  * @ClassName: DeviceServiceManager
  * @Author: zdd
