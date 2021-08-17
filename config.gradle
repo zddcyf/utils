@@ -1,5 +1,5 @@
-def versionName = "v1.0.8"
-def versionCode = 9
+def versionName = "v1.0.0"
+def versionCode = 1
 
 // dependencies
 def appcompat = "1.1.0"
