@@ -94,6 +94,14 @@ public class ApiListCacheManager {
         return CacheDatabase.get().getListCacheDao().getAllEqualsDatas(key, data);
     }
 
+    public List<ApiListCache> getAllLikeIdDatas(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllLikeDataIds(key, data);
+    }
+
+    public List<ApiListCache> getAllEqualsDataIds(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllEqualsDataIds(key, data);
+    }
+
     public ApiListCache getData(String key, String id) {
         return CacheDatabase.get().getListCacheDao().getData(key, id);
     }
@@ -105,8 +113,12 @@ public class ApiListCacheManager {
         CacheDatabase.get().getListCacheDao().delete(cache);
     }
 
-    public void deleteFirst(String key, String dataId) {
-        CacheDatabase.get().getListCacheDao().deleteFirst(key, dataId);
+    public void deleteDataFirst(String key, String data) {
+        CacheDatabase.get().getListCacheDao().deleteDataFirst(key, data);
+    }
+
+    public void deleteDataIdFirst(String key, String dataId) {
+        CacheDatabase.get().getListCacheDao().deleteDataIdFirst(key, dataId);
     }
 
     //删除不等于data列表的数据

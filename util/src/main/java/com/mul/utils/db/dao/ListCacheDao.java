@@ -34,8 +34,12 @@ public interface ListCacheDao {
     void delete(ApiListCache cache);
 
     //删除单个
+    @Query("DELETE FROM " + tableName + " WHERE `key`= :key and `data`= :data")
+    void deleteDataFirst(String key, String data);
+
+    //删除单个
     @Query("DELETE FROM " + tableName + " WHERE `key`= :key and `dataId`= :dataId")
-    void deleteFirst(String key, String dataId);
+    void deleteDataIdFirst(String key, String dataId);
 
     //删除不等于data列表的数据
     @Query("DELETE FROM " + tableName + " WHERE `key`= :key and `data` not in (:datas)")
@@ -80,6 +84,14 @@ public interface ListCacheDao {
     //根据字段查询
     @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `data` = :data")
     List<ApiListCache> getAllEqualsDatas(String key, String data);
+
+    //根据字段查询
+    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `dataId` like '%' || :dataId || '%'")
+    List<ApiListCache> getAllLikeDataIds(String key, String dataId);
+
+    //根据字段查询
+    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `dataId` = :dataId")
+    List<ApiListCache> getAllEqualsDataIds(String key, String dataId);
 
     //根据字段查询
     @Query("SELECT * FROM " + tableName + " WHERE `id`= :id")
