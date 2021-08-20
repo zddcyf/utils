@@ -75,7 +75,11 @@ public interface ListCacheDao {
 
     //根据字段查询
     @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `data` like '%' || :data || '%'")
-    List<ApiListCache> getAllDatas(String key, String data);
+    List<ApiListCache> getAllLikeDatas(String key, String data);
+
+    //根据字段查询
+    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `data` = :data")
+    List<ApiListCache> getAllEqualsDatas(String key, String data);
 
     //根据字段查询
     @Query("SELECT * FROM " + tableName + " WHERE `id`= :id")

@@ -86,8 +86,12 @@ public class ApiListCacheManager {
         return CacheDatabase.get().getListCacheDao().getAllDescDatas(key);
     }
 
-    public List<ApiListCache> getAllDatas(String key, String data) {
-        return CacheDatabase.get().getListCacheDao().getAllDatas(key, data);
+    public List<ApiListCache> getAllLikeDatas(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllLikeDatas(key, data);
+    }
+
+    public List<ApiListCache> getAllEqualsDatas(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllEqualsDatas(key, data);
     }
 
     public ApiListCache getData(String key, String id) {
