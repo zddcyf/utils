@@ -56,6 +56,10 @@ public class ApiCacheManager {
         CacheDatabase.get().getCacheDao().delete(cache);
     }
 
+    public static void deleteAll() {
+        CacheDatabase.get().getCacheDao().deleteAll();
+    }
+
     public List<ApiCache> getAllAscDatas(String key) {
         return CacheDatabase.get().getCacheDao().getAllAscDatas(key);
     }

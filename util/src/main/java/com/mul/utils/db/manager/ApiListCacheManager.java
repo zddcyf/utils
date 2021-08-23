@@ -144,4 +144,8 @@ public class ApiListCacheManager {
     public void deleteAll(String key) {
         CacheDatabase.get().getListCacheDao().deleteAll(key);
     }
+
+    public void deleteAll() {
+        CacheDatabase.get().getListCacheDao().deleteAll();
+    }
 }

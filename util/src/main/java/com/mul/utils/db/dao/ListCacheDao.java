@@ -61,6 +61,10 @@ public interface ListCacheDao {
     @Query("DELETE FROM " + tableName + " WHERE `key`= :key")
     void deleteAll(String key);
 
+    //删全部
+    @Query("DELETE FROM " + tableName)
+    void deleteAll();
+
     //改
     @Update
     void update(ApiListCache cache);

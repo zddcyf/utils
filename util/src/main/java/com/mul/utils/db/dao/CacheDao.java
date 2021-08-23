@@ -59,6 +59,10 @@ public interface CacheDao {
     @Delete
     int delete(ApiCache cache);
 
+    //删全部
+    @Query("DELETE FROM " + tableName)
+    void deleteAll();
+
     //只能传递对象昂,删除时根据Cache中的主键 来比对的
     @Update(onConflict = OnConflictStrategy.REPLACE)
     int update(ApiCache cache);
