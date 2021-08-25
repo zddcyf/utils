@@ -23,7 +23,7 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static <T> String add(T var1, T var2) {
+    public static <T, V> String add(T var1, V var2) {
         return add(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -33,7 +33,7 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static <T> String add(T var1, T var2, int scale) {
+    public static <T, V> String add(T var1, V var2, int scale) {
         return add(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -45,7 +45,7 @@ public class NumberUtils {
      * @param scale        保留小数点后位数 如果是-1则不限制位数
      * @param roundingMode 保留小数点模式
      */
-    public static <T> String add(T var1, T var2, int scale, int roundingMode) {
+    public static <T, V> String add(T var1, V var2, int scale, int roundingMode) {
 //        if (var1 < var2) {
 //            return String.format("%s", var1);
 //        }
@@ -75,7 +75,7 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static <T> String subtract(T var1, T var2) {
+    public static <T, V> String subtract(T var1, V var2) {
         return subtract(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -85,7 +85,7 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static <T> String subtract(T var1, T var2, int scale) {
+    public static <T, V> String subtract(T var1, V var2, int scale) {
         return subtract(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -97,7 +97,7 @@ public class NumberUtils {
      * @param scale        保留小数点后位数 如果是-1则不限制位数
      * @param roundingMode 保留小数点模式
      */
-    public static <T> String subtract(T var1, T var2, int scale, int roundingMode) {
+    public static <T, V> String subtract(T var1, V var2, int scale, int roundingMode) {
 //        if (var1 < var2) {
 //            return String.format("%s", var1);
 //        }
@@ -127,7 +127,7 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static <T> String multiply(T var1, T var2) {
+    public static <T, V> String multiply(T var1, V var2) {
         return multiply(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -137,7 +137,7 @@ public class NumberUtils {
      * @param var1 加数
      * @param var2 被加数
      */
-    public static <T> String multiply(T var1, T var2, int scale) {
+    public static <T, V> String multiply(T var1, V var2, int scale) {
         return multiply(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -149,7 +149,7 @@ public class NumberUtils {
      * @param scale        保留小数点后位数 如果是-1则不限制位数
      * @param roundingMode 保留小数点模式
      */
-    public static <T> String multiply(T var1, T var2, int scale, int roundingMode) {
+    public static <T, V> String multiply(T var1, V var2, int scale, int roundingMode) {
 //        if (var1 < var2) {
 //            return String.format("%s", var1);
 //        }
@@ -179,7 +179,7 @@ public class NumberUtils {
      * @param var1 除数
      * @param var2 被除数
      */
-    public static <T> String divide(T var1, T var2) {
+    public static <T, V> String divide(T var1, V var2) {
         return divide(var1, var2, -1, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -190,7 +190,7 @@ public class NumberUtils {
      * @param var2  被除数
      * @param scale 保留小数点后位数
      */
-    public static <T> String divide(T var1, T var2, int scale) {
+    public static <T, V> String divide(T var1, V var2, int scale) {
         return divide(var1, var2, scale, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -202,7 +202,7 @@ public class NumberUtils {
      * @param scale        保留小数点后位数 如果是-1则不限制位数
      * @param roundingMode 保留小数点模式
      */
-    public static <T> String divide(T var1, T var2, int scale, int roundingMode) {
+    public static <T, V> String divide(T var1, V var2, int scale, int roundingMode) {
         if (!DataUtils.isBasicType(var1) && !DataUtils.isBasicType(var2)) {
             LogUtil.e("数字格式不正确");
             return "0";

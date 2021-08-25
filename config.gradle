@@ -13,7 +13,7 @@ def zXCore = "3.3.2"
 def glideGlide = "4.11.0"
 def glideCompiler = "4.11.0"
 def pictureLibrary = "v2.5.2"
-def room = "1.1.1"
+def room = "2.3.0"
 
 ext {
     // 全局配置信息
@@ -52,7 +52,7 @@ ext {
             // zxing 二维码
             "zXCore"        : "com.google.zxing:core:${zXCore}",
             // room数据库
-            "room"              : "android.arch.persistence.room:runtime:${room}",
-            "roomCompiler"      : "android.arch.persistence.room:compiler:${room}",
+            "room"              : "androidx.room:room-runtime:${room}",
+            "roomCompiler"      : "androidx.room:room-compiler:${room}",
     ]
 }
