@@ -61,51 +61,6 @@ public class ApiListCacheManager {
         CacheDatabase.get().getListCacheDao().insert(apiCache);
     }
 
-    public <B> void update(ApiListCache apiCache, B body) {
-        apiCache.datas = ByteConvertUtils.toByteArray(body);
-        CacheDatabase.get().getListCacheDao().update(apiCache);
-    }
-
-//    public <B> void update(String key, String dataId, B body) {
-//        ApiListCache apiCache = new ApiListCache();
-//        apiCache.key = key;
-//        apiCache.dataId = dataId;
-//        apiCache.datas = toByteArray(body);
-//        CacheDatabase.get().getListCacheDao().update(apiCache);
-//    }
-
-    public List<ApiListCache> getAllDatas(String key) {
-        return CacheDatabase.get().getListCacheDao().getAllDatas(key);
-    }
-
-    public List<ApiListCache> getAllAscDatas(String key) {
-        return CacheDatabase.get().getListCacheDao().getAllAscDatas(key);
-    }
-
-    public List<ApiListCache> getAllDescDatas(String key) {
-        return CacheDatabase.get().getListCacheDao().getAllDescDatas(key);
-    }
-
-    public List<ApiListCache> getAllLikeDatas(String key, String data) {
-        return CacheDatabase.get().getListCacheDao().getAllLikeDatas(key, data);
-    }
-
-    public List<ApiListCache> getAllEqualsDatas(String key, String data) {
-        return CacheDatabase.get().getListCacheDao().getAllEqualsDatas(key, data);
-    }
-
-    public List<ApiListCache> getAllLikeIdDatas(String key, String data) {
-        return CacheDatabase.get().getListCacheDao().getAllLikeDataIds(key, data);
-    }
-
-    public List<ApiListCache> getAllEqualsDataIds(String key, String data) {
-        return CacheDatabase.get().getListCacheDao().getAllEqualsDataIds(key, data);
-    }
-
-    public ApiListCache getData(String key, String id) {
-        return CacheDatabase.get().getListCacheDao().getData(key, id);
-    }
-
     public <B> void delete(String key, B body) {
         ApiListCache cache = new ApiListCache();
         cache.key = key;
@@ -147,5 +102,53 @@ public class ApiListCacheManager {
 
     public void deleteAll() {
         CacheDatabase.get().getListCacheDao().deleteAll();
+    }
+
+    public <B> void update(ApiListCache apiCache, B body) {
+        apiCache.datas = ByteConvertUtils.toByteArray(body);
+        CacheDatabase.get().getListCacheDao().update(apiCache);
+    }
+
+    //    public <B> void update(String key, String dataId, B body) {
+//        ApiListCache apiCache = new ApiListCache();
+//        apiCache.key = key;
+//        apiCache.dataId = dataId;
+//        apiCache.datas = toByteArray(body);
+//        CacheDatabase.get().getListCacheDao().update(apiCache);
+//    }
+    public ApiListCache getData(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getData(key, data);
+    }
+
+    public ApiListCache getDataId(String key, String dataId) {
+        return CacheDatabase.get().getListCacheDao().getDataId(key, dataId);
+    }
+
+    public List<ApiListCache> getAllDatas(String key) {
+        return CacheDatabase.get().getListCacheDao().getAllDatas(key);
+    }
+
+    public List<ApiListCache> getAllAscDatas(String key) {
+        return CacheDatabase.get().getListCacheDao().getAllAscDatas(key);
+    }
+
+    public List<ApiListCache> getAllDescDatas(String key) {
+        return CacheDatabase.get().getListCacheDao().getAllDescDatas(key);
+    }
+
+    public List<ApiListCache> getAllLikeDatas(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllLikeDatas(key, data);
+    }
+
+    public List<ApiListCache> getAllEqualsDatas(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllEqualsDatas(key, data);
+    }
+
+    public List<ApiListCache> getAllLikeIdDatas(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllLikeDataIds(key, data);
+    }
+
+    public List<ApiListCache> getAllEqualsDataIds(String key, String data) {
+        return CacheDatabase.get().getListCacheDao().getAllEqualsDataIds(key, data);
     }
 }

@@ -69,6 +69,14 @@ public interface ListCacheDao {
     @Update
     void update(ApiListCache cache);
 
+    //根据字段查询
+    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `data`= :data")
+    ApiListCache getData(String key, String data);
+
+    //根据字段查询
+    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `dataId`= :dataId")
+    ApiListCache getDataId(String key, String dataId);
+
     //查全部
     @Query("SELECT * FROM " + tableName + " WHERE `key`= :key")
     List<ApiListCache> getAllDatas(String key);
@@ -100,10 +108,6 @@ public interface ListCacheDao {
     //根据字段查询
     @Query("SELECT * FROM " + tableName + " WHERE `id`= :id")
     ApiListCache getIdData(long id);
-
-    //根据字段查询
-    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `dataId`= :dataId")
-    ApiListCache getData(String key, String dataId);
 
 //    //根据字段查询
 //    @Query("SELECT * FROM " + tableName + " WHERE `key`= :key and `dataId`= :dataId and keys not NULL")
