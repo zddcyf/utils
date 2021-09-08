@@ -1,5 +1,6 @@
-package com.mul.utils;
+package com.mul.utils.db;
 
+import com.mul.utils.GenericUtils;
 import com.mul.utils.log.LogUtil;
 
 import java.io.ByteArrayInputStream;

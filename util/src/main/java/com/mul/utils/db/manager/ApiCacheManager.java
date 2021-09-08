@@ -1,6 +1,6 @@
 package com.mul.utils.db.manager;
 
-import com.mul.utils.ByteConvertUtils;
+import com.mul.utils.db.ByteConvertUtils;
 import com.mul.utils.DataUtils;
 import com.mul.utils.db.cache.CacheDatabase;
 import com.mul.utils.db.request.ApiCache;

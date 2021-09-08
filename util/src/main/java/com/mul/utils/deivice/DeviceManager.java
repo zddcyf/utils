@@ -1,5 +1,7 @@
 package com.mul.utils.deivice;
 
+import static android.content.Context.POWER_SERVICE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +9,13 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Environment;
+import android.os.PowerManager;
+import android.provider.Settings;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.mul.utils.DataUtils;
 import com.mul.utils.NumberUtils;
@@ -575,5 +583,25 @@ public class DeviceManager {
     public static void dialPhone(String phoneNumber) {
         Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));//跳转到拨号界面，同时传递电话号码
         GlobalManager.INSTANCE.currentActivity().startActivity(dialIntent);
+    }
+
+    /**
+     * 忽略电池优化
+     * <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void ignoreBatteryOptimization() {
+        try {
+            PowerManager powerManager = (PowerManager) GlobalManager.INSTANCE.context.getSystemService(POWER_SERVICE);
+            boolean hasIgnored = powerManager.isIgnoringBatteryOptimizations(GlobalManager.INSTANCE.context.getPackageName());
+            if (!hasIgnored) {
+                Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + GlobalManager.INSTANCE.context.getPackageName()));
+                GlobalManager.INSTANCE.currentActivity().startActivity(intent);
+            }
+        } catch (Exception e) {
+            //TODO :handle exception
+            Log.e("ex", e.getMessage());
+        }
     }
 }

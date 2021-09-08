@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.mul.utils.ByteConvertUtils;
+import com.mul.utils.db.ByteConvertUtils;
 
 import java.io.Serializable;
 
